@@ -27,4 +27,5 @@ return [
         'send' => 'Kirim Setel Ulang Tautan',
         'back' => 'Back to login',
     ],
+    'logout' => 'Keluar',
 ];

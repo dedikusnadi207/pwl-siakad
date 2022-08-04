@@ -5,5 +5,6 @@ namespace App\Constants;
 class UserType
 {
     const ADMIN = 'admin';
-    const MAHASISWA = 'mahasiswa';
+    const COLLEGER = 'colleger';
+    const LECTURER = 'lecturer';
 }

@@ -40,6 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'colleger' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'lecturer' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
 
         'api' => [
             'driver' => 'token',

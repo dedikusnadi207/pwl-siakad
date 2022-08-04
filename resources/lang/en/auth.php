@@ -28,4 +28,5 @@ return [
         'send' => 'Send Reset Link',
         'back' => 'Kembali untuk login',
     ],
+    'logout' => 'Log Out',
 ];
