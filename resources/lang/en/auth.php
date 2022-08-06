@@ -29,4 +29,5 @@ return [
         'back' => 'Kembali untuk login',
     ],
     'logout' => 'Log Out',
+    'old_password_doesnt_match' => 'Old password does\'nt match',
 ];

@@ -15,13 +15,14 @@ class CreateStudyPlanCardsTable extends Migration
     {
         Schema::create('study_plan_cards', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('colleger_id')->unsigned()->index();
+            // $table->bigInteger('colleger_id')->unsigned()->index();
+            $table->string('class_type', 3); // R, S, X
             $table->tinyInteger('semester');
-            $table->integer('year')->unsigned();
-            $table->string('status', 20);
+            // $table->integer('year')->unsigned();
+            // $table->string('status', 20);
             $table->timestamps();
 
-            $table->foreign('colleger_id')->references('id')->on('collegers');
+            // $table->foreign('colleger_id')->references('id')->on('collegers');
         });
     }
 

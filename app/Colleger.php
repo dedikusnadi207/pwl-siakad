@@ -20,12 +20,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $year
  * @property string $status
  * @property string $class_type
+ * @property string $class_group
  * @property boolean $semester
  * @property string $created_at
  * @property string $updated_at
  * @property User $user
+ * @property CollegerStudyPlanCard[] $collegerStudyPlanCards
  * @property CollegerStudyProgram[] $collegerStudyPrograms
- * @property StudyPlanCard[] $studyPlanCards
  */
 class Colleger extends Model
 {
@@ -39,7 +40,7 @@ class Colleger extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'nik', 'npm', 'name', 'email', 'telephone', 'address', 'npwp', 'birth_place', 'birth_date', 'photo', 'year', 'status', 'class_type', 'semester', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'nik', 'npm', 'name', 'email', 'telephone', 'address', 'npwp', 'birth_place', 'birth_date', 'photo', 'year', 'status', 'class_type', 'class_group', 'semester', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -52,16 +53,16 @@ class Colleger extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function collegerStudyPrograms()
+    public function collegerStudyPlanCards()
     {
-        return $this->hasMany('App\CollegerStudyProgram');
+        return $this->hasMany('App\CollegerStudyPlanCard');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function studyPlanCards()
+    public function collegerStudyPrograms()
     {
-        return $this->hasMany('App\StudyPlanCard');
+        return $this->hasMany('App\CollegerStudyProgram');
     }
 }

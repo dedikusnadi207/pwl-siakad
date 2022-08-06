@@ -25,10 +25,11 @@ class CreateCollegersTable extends Migration
             $table->string('npwp', 100)->nullable();
             $table->string('birth_place', 100);
             $table->date('birth_date');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->integer('year')->unsigned();
             $table->string('status', 20); //ACTIVE,NOT_ACTIVE
-            $table->string('class_type', 3); // A,B,C
+            $table->string('class_type', 3); // R, S, X
+            $table->string('class_group', 3); // A, B, C
             $table->tinyInteger('semester');
             $table->timestamps();
 

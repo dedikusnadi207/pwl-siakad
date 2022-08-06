@@ -9,7 +9,7 @@
             'url' => url('/'),
         ], [
             'title' => 'Dashboard',
-            'url' => url('profi')
+            'url' => url('profile')
         ]
     ];
 @endphp

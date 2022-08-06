@@ -15,9 +15,8 @@ class CreateClassesTable extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 100); // Reguler, Sore, Non Reguler
+            $table->string('name', 100); // Reguler, Sore, Non Reguler (Non Reguler X/Y)
             $table->string('type', 100); // reguler, sore, extensi (R,S,X)
-            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

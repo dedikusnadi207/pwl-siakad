@@ -6,13 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property integer $id
- * @property integer $colleger_id
+ * @property string $class_type
  * @property boolean $semester
- * @property int $year
- * @property string $status
  * @property string $created_at
  * @property string $updated_at
- * @property Colleger $colleger
+ * @property CollegerStudyPlanCard[] $collegerStudyPlanCards
  * @property StudyPlanCardDetail[] $studyPlanCardDetails
  */
 class StudyPlanCard extends Model
@@ -27,14 +25,14 @@ class StudyPlanCard extends Model
     /**
      * @var array
      */
-    protected $fillable = ['colleger_id', 'semester', 'year', 'status', 'created_at', 'updated_at'];
+    protected $fillable = ['class_type', 'semester', 'created_at', 'updated_at'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function colleger()
+    public function collegerStudyPlanCards()
     {
-        return $this->belongsTo('App\Colleger');
+        return $this->hasMany('App\CollegerStudyPlanCard');
     }
 
     /**

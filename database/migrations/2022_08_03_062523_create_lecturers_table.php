@@ -18,6 +18,7 @@ class CreateLecturersTable extends Migration
             $table->bigInteger('user_id')->unsigned()->index();
             $table->string('nik', 20)->unique();
             $table->string('name', 100);
+            $table->string('email', 100);
             $table->string('title', 100);
             $table->string('telephone', 20);
             $table->timestamps();

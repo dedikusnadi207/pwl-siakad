@@ -28,4 +28,5 @@ return [
         'back' => 'Back to login',
     ],
     'logout' => 'Keluar',
+    'old_password_doesnt_match' => 'Password lama tidak sesuai',
 ];

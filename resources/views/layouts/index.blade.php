@@ -45,6 +45,10 @@
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{ asset('template/vendor/css/pages/page-auth.css')}}" />
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('datatables/datatables.min.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('sweetalert/sweetalert2.min.css')}}"/>
+
+
     <!-- Helpers -->
     <script src="{{ asset('template/vendor/js/helpers.js') }}"></script>
 
@@ -69,7 +73,7 @@
 
           @if ($withMenu ?? true)
             {{-- <nav id="layout-navbar" style="margin: 12px 50px 0"> --}}
-            <nav class="layout-navbar navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+            <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
                 <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
                     <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                         <i class="bx bx-menu bx-sm"></i>
@@ -135,28 +139,19 @@
                             </span>
                             <span class="demo menu-text fw-bolder ms-2">{{ env('APP_NAME') }}</span>
                         </a>
-
-                        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-                        <i class="bx bx-chevron-left bx-sm align-middle"></i>
-                        </a>
                     </div>
                     <ul class="navbar-nav flex-row align-items-center ms-auto">
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                             <div class="avatar avatar-online">
                                 {{-- <i class='bx bxs-user'></i> --}}
-                                <img src="{{ asset('template/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
+                                <img src="{{ Auth::user()->publicPhoto() }}" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
                                 <a class="dropdown-item" href="#">
                                     <div class="d-flex">
-                                        {{-- <div class="flex-shrink-0 me-3">
-                                            <div class="avatar avatar-online">
-                                                <img src="{{ asset('template/img/avatars/1.png') }}" alt class="w-px-40 h-auto rounded-circle" />
-                                            </div>
-                                        </div> --}}
                                         <div class="flex-grow-1">
                                             <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
                                             <small class="text-muted">{{ Auth::user()->user_type }}</small>
@@ -168,9 +163,9 @@
                                 <div class="dropdown-divider"></div>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{ url('account/profile') }}">
                                     <i class="bx bx-user me-2"></i>
-                                    <span class="align-middle">My Profile</span>
+                                    <span class="align-middle">{{ __('menu.my_profile') }}</span>
                                 </a>
                             </li>
                             <li>
@@ -193,7 +188,23 @@
           @endif
 
           <!-- / Navbar -->
-          @yield('content')
+        <div class="container-wrapper">
+            <div class="container-xxl flex-grow-1 container-p-y">
+                @php
+                    $displaySuccess = session('success') ? 'block' : 'none';
+                @endphp
+                <div id="alertSuccess" class="alert alert-success" style="display: {{$displaySuccess}}">
+                    {{ session('success') }}
+                </div>
+                @php
+                    $displaySuccess = session('error') ? 'block' : 'none';
+                @endphp
+                <div id="alertError" class="alert alert-danger" style="display: {{$displaySuccess}}">
+                    {{ session('error') }}
+                </div>
+                @yield('content')
+            </div>
+        </div>
         </div>
         <!-- / Layout page -->
       </div>
@@ -206,6 +217,7 @@
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="{{ asset('template/vendor/libs/jquery/jquery.js')}}"></script>
+    <script src="{{ asset('js/custom.js')}}"></script>
     <script src="{{ asset('template/vendor/libs/popper/popper.js')}}"></script>
     <script src="{{ asset('template/vendor/js/bootstrap.js')}}"></script>
     <script src="{{ asset('template/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
@@ -222,7 +234,56 @@
     <!-- Page JS -->
     <script src="{{ asset('template/js/dashboards-analytics.js') }}"></script>
 
+    <script type="text/javascript" src="{{ asset('datatables/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('sweetalert/sweetalert2.all.min.js') }}"></script>
+
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    @stack('js')
+    <script>
+        function confirmation(action) {
+            Swal.fire({
+                title: "{{ __('common.are_you_sure') }}",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: "{{ __('common.yes') }}",
+                cancelButtonText: "{{ __('common.cancel') }}",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    action();
+                }
+            })
+        }
+        function deleteConfirmation(url, tableId = null) {
+            confirmation(()=>{
+                $.ajax({
+                    method:"DELETE",
+                    url,
+                    data:{
+                        "_token":"{{ csrf_token() }}"
+                    }
+                }).done(function(data, message, xhr){
+                    if(xhr.status == 200){
+                        console.log(data);
+                        console.log(typeof(data));
+                        console.log(typeof(data) == 'string');
+                        if (typeof(data) == 'string') {
+                            $('#alertSuccess').text(data).show();
+                        }
+                        // $(window).scrollTop(0);
+                        $("html, body").animate({ scrollTop: 0 });
+                        // window.scrollTo({ top: 0, behavior: 'smooth' });
+                        if (tableId) {
+                            $(tableId).ajax.reload();
+                        } else {
+                            oTable.ajax.reload();
+                        }
+                    }
+                })
+            })
+        }
+    </script>
   </body>
 </html>

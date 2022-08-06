@@ -67,10 +67,22 @@ class User extends Authenticatable
     {
         if ($this->isColleger()) {
             return $this->colleger;
-        } else if ($this->isLecturer()) {
+        } elseif ($this->isLecturer()) {
             return $this->lecturer;
         }
 
         return null;
+    }
+
+    public function publicPhoto()
+    {
+        $result = asset('template/img/avatars/1.png');
+        if ($this->isColleger() && !empty($this->colleger->photo ?? null)) {
+            $result = url($this->colleger->photo);
+        } elseif ($this->isLecturer() && !empty($this->lecturer->photo ?? null)) {
+            $result = url($this->lecturer->photo);
+        }
+
+        return $result;
     }
 }

@@ -18,6 +18,7 @@ class CreateAcademicSupervisorsTable extends Migration
             $table->bigInteger('lecturer_id')->unsigned()->index();
             $table->integer('year')->unsigned();
             $table->string('class_type', 3);
+            $table->string('class_group', 3);
             $table->timestamps();
 
             $table->foreign('lecturer_id')->references('id')->on('lecturers');
