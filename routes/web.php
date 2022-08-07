@@ -21,16 +21,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('account/change-password', 'AccountController@changePassword');
 
     Route::middleware(['user.type:admin'])->group(function () {
-        Route::get('class', 'AppClassController@index');
-        Route::post('class', 'AppClassController@save');
-        Route::delete('class/{id}', 'AppClassController@destroy');
-        Route::get('class/data', 'AppClassController@data');
-
-        Route::get('course', 'CourseController@index');
-        Route::post('course', 'CourseController@save');
-        Route::delete('course/{id}', 'CourseController@destroy');
-        Route::get('course/data', 'CourseController@data');
-
         Route::get('faculty', 'FacultyController@index');
         Route::post('faculty', 'FacultyController@save');
         Route::delete('faculty/{id}', 'FacultyController@destroy');
@@ -40,6 +30,21 @@ Route::middleware(['auth'])->group(function () {
         Route::post('study-program', 'StudyProgramController@save');
         Route::delete('study-program/{id}', 'StudyProgramController@destroy');
         Route::get('study-program/data', 'StudyProgramController@data');
+
+        Route::get('course', 'CourseController@index');
+        Route::post('course', 'CourseController@save');
+        Route::delete('course/{id}', 'CourseController@destroy');
+        Route::get('course/data', 'CourseController@data');
+
+        Route::get('class', 'AppClassController@index');
+        Route::post('class', 'AppClassController@save');
+        Route::delete('class/{id}', 'AppClassController@destroy');
+        Route::get('class/data', 'AppClassController@data');
+
+        Route::get('admin', 'AdminController@index');
+        Route::post('admin', 'AdminController@save');
+        Route::delete('admin/{id}', 'AdminController@destroy');
+        Route::get('admin/data', 'AdminController@data');
     });
 
 });

@@ -36,7 +36,11 @@
             ], [
                 'group' => __('common.account'),
                 'children' => [
-
+                    [
+                        'title' => 'Admin',
+                        'url' => url('admin'),
+                        'icon' => 'bx-user'
+                    ]
                 ],
             ]
         ]);
