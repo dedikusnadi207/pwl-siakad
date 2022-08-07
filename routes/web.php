@@ -45,6 +45,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('admin', 'AdminController@save');
         Route::delete('admin/{id}', 'AdminController@destroy');
         Route::get('admin/data', 'AdminController@data');
+
+        Route::get('lecturer', 'LecturerController@index');
+        Route::post('lecturer', 'LecturerController@save');
+        Route::delete('lecturer/{id}', 'LecturerController@destroy');
+        Route::get('lecturer/data', 'LecturerController@data');
     });
 
 });

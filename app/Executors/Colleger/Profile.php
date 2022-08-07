@@ -6,6 +6,7 @@ use App\Contracts\ProfileInterface;
 use App\Services\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class Profile implements ProfileInterface {
@@ -34,6 +35,7 @@ class Profile implements ProfileInterface {
             'telephone' => 'required|numeric',
             'photo' => 'nullable|file|max:800'
         ])->validate();
+        DB::beginTransaction();
         $user = Auth::user();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -46,9 +48,10 @@ class Profile implements ProfileInterface {
         $colleger->birth_place = $request->birth_place;
         $colleger->birth_date = $request->birth_date;
         $colleger->email = $request->email;
-        $colleger->telephone = $request->telephone;
+        $colleger->telephone = purifyTelephone($request->telephone);
         $colleger->photo = $this->fileService->upload($request->file('photo'), 'colleger');
         $colleger->save();
+        DB::commit();
 
         return redirect('account/profile')->with('success', __('common.data_saved'));
     }

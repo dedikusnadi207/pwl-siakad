@@ -38,4 +38,6 @@ return [
     'study_program' => 'Program Studi',
     'account' => 'Akun',
     'master_data' => 'Data Master',
+    'lecturer' => 'Dosen',
+    'title' => 'Gelar',
 ];

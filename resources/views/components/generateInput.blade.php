@@ -9,7 +9,7 @@
         $required = isset($input['required']) ? 'required' : '';
         $readonly = isset($input['readonly']) ? 'readonly' : '';
         $isPassword = 'password' == $inputType;
-        $value = $input['value'] ?? old($name);
+        $value = old($name) ?? $input['value'] ?? '';
     @endphp
     <div class="mb-3 {{ $isPassword ? 'form-password-toggle' : '' }}">
         <label for="{{ $id }}" class="form-label">{{ $label }}</label>

@@ -40,6 +40,10 @@
                         'title' => 'Admin',
                         'url' => url('admin'),
                         'icon' => 'bx-user'
+                    ], [
+                        'title' => __('common.lecturer'),
+                        'url' => url('lecturer'),
+                        'icon' => 'bx-user'
                     ]
                 ],
             ]

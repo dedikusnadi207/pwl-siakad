@@ -38,4 +38,6 @@ return [
     'study_program' => 'Study Program',
     'account' => 'Account',
     'master_data' => 'Master Data',
+    'lecturer' => 'Lecturer',
+    'title' => 'Title',
 ];
