@@ -16,6 +16,10 @@
                 'title' => __('common.course'),
                 'url' => url('course'),
                 'icon' => 'bx-book'
+            ], [
+                'title' => __('common.faculty'),
+                'url' => url('faculty'),
+                'icon' => 'bx-building'
             ]
         ]);
     }

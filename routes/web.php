@@ -30,6 +30,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('course', 'CourseController@save');
         Route::delete('course/{id}', 'CourseController@destroy');
         Route::get('course/data', 'CourseController@data');
+
+        Route::get('faculty', 'FacultyController@index');
+        Route::post('faculty', 'FacultyController@save');
+        Route::delete('faculty/{id}', 'FacultyController@destroy');
+        Route::get('faculty/data', 'FacultyController@data');
     });
 
 });

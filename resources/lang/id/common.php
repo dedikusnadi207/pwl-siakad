@@ -33,4 +33,6 @@ return [
     'are_you_sure' => 'Anda yakin?',
     'course' => 'Mata Kuliah',
     'code' => 'Kode',
+    'faculty' => 'Fakultas',
+    'short_name' => 'Nama Pendek',
 ];
