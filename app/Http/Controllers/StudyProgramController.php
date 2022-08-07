@@ -2,39 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
+use App\StudyProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Datatables;
 
-class CourseController extends Controller
+class StudyProgramController extends Controller
 {
     public function index(Request $request)
     {
-        $data = Course::firstOrNew(['id' => $request->id]);
-        $activeUrl = url('course');
+        $data = StudyProgram::firstOrNew(['id' => $request->id]);
+        $activeUrl = url('study-program');
 
-        return view('admin.course.index', compact('data', 'activeUrl'));
+        return view('admin.study-program.index', compact('data','activeUrl'));
     }
 
     public function save(Request $request)
     {
         Validator::make($request->all(), [
-            'code' => 'required|unique:courses,code,'.$request->id.',id',
+            'short_name' => 'required|unique:faculties,short_name,'.$request->id.',id',
             'name' => 'required',
-            'sks' => 'required|numeric|min:1',
         ])->validate();
-        Course::updateOrCreate(
+        StudyProgram::updateOrCreate(
             ['id' => $request->id],
-            ['code' => $request->code, 'name' => $request->name, 'sks' => $request->sks],
+            ['short_name' => $request->short_name, 'name' => $request->name],
         );
 
-        return redirect('course')->with('success', __('common.data_saved'));
+        return redirect('study-program')->with('success', __('common.data_saved'));
     }
 
     public function destroy($id)
     {
-        $data = Course::find($id);
+        $data = StudyProgram::find($id);
         if ($data) {
             $data->delete();
         }
@@ -44,10 +43,10 @@ class CourseController extends Controller
 
     public function data()
     {
-        return Datatables::of(Course::query())
+        return Datatables::of(StudyProgram::query())
             ->addColumn('action', function ($data)
             {
-                $url = url('course');
+                $url = url('study-program');
                 return view('components.action', compact('data', 'url'));
             })
             ->make(true);

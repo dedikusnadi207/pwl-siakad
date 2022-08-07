@@ -35,4 +35,7 @@ return [
     'code' => 'Kode',
     'faculty' => 'Fakultas',
     'short_name' => 'Nama Pendek',
+    'study_program' => 'Program Studi',
+    'account' => 'Akun',
+    'master_data' => 'Data Master',
 ];

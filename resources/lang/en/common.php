@@ -35,4 +35,7 @@ return [
     'code' => 'Code',
     'faculty' => 'Faculty',
     'short_name' => 'Short Name',
+    'study_program' => 'Study Program',
+    'account' => 'Account',
+    'master_data' => 'Master Data',
 ];

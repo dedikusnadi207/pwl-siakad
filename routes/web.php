@@ -35,6 +35,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('faculty', 'FacultyController@save');
         Route::delete('faculty/{id}', 'FacultyController@destroy');
         Route::get('faculty/data', 'FacultyController@data');
+
+        Route::get('study-program', 'StudyProgramController@index');
+        Route::post('study-program', 'StudyProgramController@save');
+        Route::delete('study-program/{id}', 'StudyProgramController@destroy');
+        Route::get('study-program/data', 'StudyProgramController@data');
     });
 
 });

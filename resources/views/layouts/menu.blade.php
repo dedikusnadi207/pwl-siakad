@@ -1,25 +1,43 @@
 @php
     $menus = [
         [
-            'title' => 'Dashboard',
-            'url' => url('/'),
-            'icon' => 'bxs-dashboard'
+            'children' => [
+                [
+                    'title' => 'Dashboard',
+                    'url' => url('/'),
+                    'icon' => 'bxs-dashboard'
+                ]
+            ]
         ]
     ];
     if (Auth::user()->isAdmin()) {
         $menus = array_merge($menus, [
             [
-                'title' => __('common.class'),
-                'url' => url('class'),
-                'icon' => 'bx-home'
+                'group' => __('common.master_data'),
+                'children' => [
+                    [
+                        'title' => __('common.faculty'),
+                        'url' => url('faculty'),
+                        'icon' => 'bx-building'
+                    ], [
+                        'title' => __('common.study_program'),
+                        'url' => url('study-program'),
+                        'icon' => 'bx-book-content'
+                    ], [
+                        'title' => __('common.course'),
+                        'url' => url('course'),
+                        'icon' => 'bx-book'
+                    ], [
+                        'title' => __('common.class'),
+                        'url' => url('class'),
+                        'icon' => 'bx-home'
+                    ],
+                ],
             ], [
-                'title' => __('common.course'),
-                'url' => url('course'),
-                'icon' => 'bx-book'
-            ], [
-                'title' => __('common.faculty'),
-                'url' => url('faculty'),
-                'icon' => 'bx-building'
+                'group' => __('common.account'),
+                'children' => [
+
+                ],
             ]
         ]);
     }
@@ -94,12 +112,17 @@
 
     <ul class="menu-inner py-1">
         @foreach ($menus as $menu)
-            <li class="menu-item {{ isset($activeUrl) && $activeUrl == $menu['url'] ? 'active' : '' }}">
-                <a href="{{ $menu['url'] }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx {{ $menu['icon'] ?? '' }}"></i>
-                    <div>{{ $menu['title'] }}</div>
-                </a>
-            </li>
+            @if (isset($menu['group']))
+                <li class="menu-header small text-uppercase"><span class="menu-header-text">{{ $menu['group'] }}</span></li>
+            @endif
+            @foreach ($menu['children'] as $item)
+                <li class="menu-item {{ isset($activeUrl) && $activeUrl == $item['url'] ? 'active' : '' }}">
+                    <a href="{{ $item['url'] }}" class="menu-link">
+                        <i class="menu-icon tf-icons bx {{ $item['icon'] ?? '' }}"></i>
+                        <div>{{ $item['title'] }}</div>
+                    </a>
+                </li>
+            @endforeach
         @endforeach
     </ul>
     </aside>

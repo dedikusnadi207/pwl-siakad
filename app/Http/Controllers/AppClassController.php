@@ -12,8 +12,9 @@ class AppClassController extends Controller
     public function index(Request $request)
     {
         $data = AppClass::firstOrNew(['id' => $request->id]);
+        $activeUrl = url('class');
 
-        return view('admin.class.index', compact('data'));
+        return view('admin.class.index', compact('data', 'activeUrl'));
     }
 
     public function save(Request $request)

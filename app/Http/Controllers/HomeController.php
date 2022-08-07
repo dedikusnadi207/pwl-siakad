@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $activeUrl = url('/');
+
+        return view('home', compact('activeUrl'));
     }
 }

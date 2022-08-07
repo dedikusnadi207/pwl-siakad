@@ -1,4 +1,4 @@
-@extends('layouts.index', ['activeUrl' => url('class')])
+@extends('layouts.index')
 @section('content')
 <!-- Content -->
     <div class="row">

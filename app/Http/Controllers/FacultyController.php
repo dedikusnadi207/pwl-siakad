@@ -12,8 +12,9 @@ class FacultyController extends Controller
     public function index(Request $request)
     {
         $data = Faculty::firstOrNew(['id' => $request->id]);
+        $activeUrl = url('faculty');
 
-        return view('admin.faculty.index', compact('data'));
+        return view('admin.faculty.index', compact('data', 'activeUrl'));
     }
 
     public function save(Request $request)
