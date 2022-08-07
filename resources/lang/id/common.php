@@ -31,4 +31,6 @@ return [
     'yes' => 'Ya',
     'cancel' => 'Batal',
     'are_you_sure' => 'Anda yakin?',
+    'course' => 'Mata Kuliah',
+    'code' => 'Kode',
 ];

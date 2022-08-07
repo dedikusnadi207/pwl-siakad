@@ -25,6 +25,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('class', 'AppClassController@save');
         Route::delete('class/{id}', 'AppClassController@destroy');
         Route::get('class/data', 'AppClassController@data');
+
+        Route::get('course', 'CourseController@index');
+        Route::post('course', 'CourseController@save');
+        Route::delete('course/{id}', 'CourseController@destroy');
+        Route::get('course/data', 'CourseController@data');
     });
 
 });

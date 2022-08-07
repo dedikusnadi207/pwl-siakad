@@ -2,37 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\AppClass;
+use App\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Datatables;
 
-class AppClassController extends Controller
+class CourseController extends Controller
 {
     public function index(Request $request)
     {
-        $data = AppClass::firstOrNew(['id' => $request->id]);
+        $data = Course::firstOrNew(['id' => $request->id]);
 
-        return view('admin.class.index', compact('data'));
+        return view('admin.course.index', compact('data'));
     }
 
     public function save(Request $request)
     {
         Validator::make($request->all(), [
+            'code' => 'required|unique:courses,code,'.$request->id.',id',
             'name' => 'required',
-            'type' => 'required',
+            'sks' => 'required|numeric|min:1',
         ])->validate();
-        AppClass::updateOrCreate(
+        Course::updateOrCreate(
             ['id' => $request->id],
-            ['name' => $request->name, 'type' => $request->type],
+            ['code' => $request->code, 'name' => $request->name, 'sks' => $request->sks],
         );
 
-        return redirect('class')->with('success', __('common.data_saved'));
+        return redirect('course')->with('success', __('common.data_saved'));
     }
 
     public function destroy($id)
     {
-        $data = AppClass::find($id);
+        $data = Course::find($id);
         if ($data) {
             $data->delete();
         }
@@ -42,10 +43,10 @@ class AppClassController extends Controller
 
     public function data()
     {
-        return Datatables::of(AppClass::query())
+        return Datatables::of(Course::query())
             ->addColumn('action', function ($data)
             {
-                $url = url('class');
+                $url = url('course');
                 return view('components.action', compact('data', 'url'));
             })
             ->make(true);
