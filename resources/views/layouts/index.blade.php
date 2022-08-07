@@ -143,9 +143,8 @@
                     <ul class="navbar-nav flex-row align-items-center ms-auto">
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
                         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                            <div class="avatar avatar-online">
-                                {{-- <i class='bx bxs-user'></i> --}}
-                                <img src="{{ Auth::user()->publicPhoto() }}" alt class="w-px-40 h-auto rounded-circle" />
+                            <div class="avatar avatar-online" style="border-radius: 50%">
+                                <img src="{{ Auth::user()->publicPhoto() }}" class="rounded-circle" style="object-fit: cover"/>
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">

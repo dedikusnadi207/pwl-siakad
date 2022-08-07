@@ -20,6 +20,7 @@
                                 width="100"
                                 id="uploadedAvatar"
                                 onerror="$(this).attr('src', '{{ Auth::user()->publicPhoto() }}')"
+                                style="object-fit: cover"
                             />
                             <div class="button-wrapper">
                                 <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
