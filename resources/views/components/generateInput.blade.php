@@ -37,7 +37,7 @@
         @elseif ('select' == $type)
             <div class="col-md-12">
                 <select name="{{ $name }}" id="{{ $id }}" class="form-control @error($name) is-invalid @enderror" {{ $required }} {{ $readonly }}>
-                    <option value="">-- Choose {{ $label }} --</option>
+                    <option value="">-- {{ __('common.choose') }} {{ $label }} --</option>
                     @foreach ($options as $option)
                         <option value="{{ $option['value'] }}" {{ $value == $option['value'] ? 'selected' : '' }}>{{ $option['text'] }}</option>
                     @endforeach

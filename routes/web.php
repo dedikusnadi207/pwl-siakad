@@ -50,6 +50,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('lecturer', 'LecturerController@save');
         Route::delete('lecturer/{id}', 'LecturerController@destroy');
         Route::get('lecturer/data', 'LecturerController@data');
+        Route::get('lecturer/{lecturerId}/academic-supervisor', 'LecturerController@academicSupervisor');
+        Route::post('lecturer/{lecturerId}/academic-supervisor', 'LecturerController@saveAcademicSupervisor');
+        Route::get('lecturer/{lecturerId}/academic-supervisor/data', 'LecturerController@academicSupervisorData');
+        Route::delete('lecturer/{lecturerId}/academic-supervisor/{id}', 'LecturerController@destroyAcademicSupervisor');
 
         Route::get('colleger', 'CollegerController@index');
         Route::post('colleger', 'CollegerController@save');

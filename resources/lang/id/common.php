@@ -43,4 +43,7 @@ return [
     'colleger' => 'Mahasiswa',
     'photo' => 'Foto',
     'year' => 'Tahun',
+    'academic_supervisor' => 'Pembimbing Akademik',
+    'choose' => 'Pilih',
+    'back' => 'Kembali',
 ];

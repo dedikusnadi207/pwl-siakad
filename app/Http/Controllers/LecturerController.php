@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\AcademicSupervisor;
+use App\AppClass;
 use App\Constants\UserType;
 use App\Lecturer;
 use App\Services\FileService;
@@ -88,10 +90,11 @@ class LecturerController extends Controller
         return Datatables::of(Lecturer::query())
             ->addColumn('action', function ($data)
             {
+                $prefix = '<a href="'.url('lecturer/'.$data->id.'/academic-supervisor').'" class="btn btn-sm btn-primary">'. __('common.academic_supervisor').'</a>';
                 $data = $data->user;
                 $url = url('lecturer');
 
-                return view('components.action', compact('data', 'url'));
+                return view('components.action', compact('data', 'url', 'prefix'));
             })
             ->addColumn('photo', function ($data)
             {
@@ -100,5 +103,64 @@ class LecturerController extends Controller
                 return view('components.tablePhoto', compact('photo'));
             })
             ->make(true);
+    }
+
+    public function academicSupervisor(Request $request, $lecturerId)
+    {
+        $lecturer = Lecturer::find($lecturerId);
+        if (!$lecturer) {
+            return abort(404);
+        }
+        $data = AcademicSupervisor::firstOrNew(['id' => $request->id]);
+        $appClass = AppClass::select('type')->distinct()->pluck('type');
+        $classTypes = [];
+        foreach ($appClass as $value) {
+            $classTypes[] = [
+                'value' => $value,
+                'text' => $value,
+            ];
+        }
+        $activeUrl = url('lecturer/'.$lecturerId.'/academic-supervisor');
+
+        return view('admin.lecturer.academic-supervisor', compact('data', 'lecturer', 'classTypes', 'activeUrl'));
+    }
+
+    public function saveAcademicSupervisor(Request $request, $lecturerId)
+    {
+        Validator::make($request->all(), [
+            'year' => 'required',
+            'class_type' => 'required',
+            'class_group' => 'required',
+        ])->validate();
+        AcademicSupervisor::updateOrCreate(
+            ['id' => $request->id],
+            [
+                'lecturer_id' => $lecturerId,
+                'year' => $request->year,
+                'class_type' => $request->class_type,
+                'class_group' => $request->class_group,
+            ]
+        );
+
+        return redirect('lecturer/'.$lecturerId.'/academic-supervisor')->with('success', __('common.data_saved'));
+    }
+
+    public function academicSupervisorData($lecturerId)
+    {
+        return Datatables::of(AcademicSupervisor::where('lecturer_id', $lecturerId))
+            ->addColumn('action', function ($data)
+            {
+                $url = url('lecturer/'.$data->lecturer_id.'/academic-supervisor');
+
+                return view('components.action', compact('data', 'url'));
+            })
+            ->make(true);
+    }
+
+    public function destroyAcademicSupervisor($lecturerId, $id)
+    {
+        AcademicSupervisor::where(['id' => $id])->delete();
+
+        return response()->json(__('common.data_deleted'), 200);
     }
 }

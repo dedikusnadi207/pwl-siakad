@@ -43,4 +43,7 @@ return [
     'colleger' => 'Colleger',
     'photo' => 'Photo',
     'year' => 'Year',
+    'academic_supervisor' => 'Academic Supervisor',
+    'choose' => 'Choose',
+    'back' => 'Back',
 ];
