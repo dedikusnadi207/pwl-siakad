@@ -50,6 +50,15 @@
                         'icon' => 'bx-user'
                     ]
                 ],
+            ], [
+                'group' => __('common.academic'),
+                'children' => [
+                    [
+                        'title' => __('common.class_course'),
+                        'url' => url('class-course'),
+                        'icon' => 'bx-book'
+                    ]
+                ],
             ]
         ]);
     }

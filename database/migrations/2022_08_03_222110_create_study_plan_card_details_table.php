@@ -17,9 +17,12 @@ class CreateStudyPlanCardDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('study_plan_card_id')->unsigned()->index();
             $table->bigInteger('class_course_id')->unsigned()->index();
-            $table->decimal('grade', 5, 2)->nullable();
-            $table->string('index', 3)->nullable();
-            $table->decimal('index_grade', 5, 2)->nullable();
+            // $table->decimal('grade', 5, 2)->nullable();
+            // $table->string('index', 3)->nullable();
+            // $table->decimal('index_grade', 5, 2)->nullable();
+            $table->string('day', 100);
+            $table->time('start_time_schedule');
+            $table->time('end_time_schedule');
             $table->timestamps();
 
             $table->foreign('study_plan_card_id')->references('id')->on('study_plan_cards');

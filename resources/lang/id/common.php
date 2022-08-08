@@ -46,4 +46,5 @@ return [
     'academic_supervisor' => 'Pembimbing Akademik',
     'choose' => 'Pilih',
     'back' => 'Kembali',
+    'class_course' => 'Mata Kuliah Kelas',
 ];

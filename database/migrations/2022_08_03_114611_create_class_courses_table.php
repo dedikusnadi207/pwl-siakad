@@ -18,9 +18,9 @@ class CreateClassCoursesTable extends Migration
             $table->bigInteger('class_id')->unsigned()->index();
             $table->bigInteger('course_id')->unsigned()->index();
             $table->bigInteger('lecturer_id')->unsigned()->index();
-            $table->string('day', 100);
-            $table->time('start_time_schedule');
-            $table->time('end_time_schedule');
+            // $table->string('day', 100);
+            // $table->time('start_time_schedule');
+            // $table->time('end_time_schedule');
             $table->timestamps();
 
             $table->foreign('class_id')->references('id')->on('classes');

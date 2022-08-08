@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $id
  * @property integer $study_plan_card_id
  * @property integer $class_course_id
- * @property float $grade
- * @property string $index
- * @property float $index_grade
+ * @property string $day
+ * @property string $start_time_schedule
+ * @property string $end_time_schedule
  * @property string $created_at
  * @property string $updated_at
  * @property ClassCourse $classCourse
@@ -28,7 +28,7 @@ class StudyPlanCardDetail extends Model
     /**
      * @var array
      */
-    protected $fillable = ['study_plan_card_id', 'class_course_id', 'grade', 'index', 'index_grade', 'created_at', 'updated_at'];
+    protected $fillable = ['study_plan_card_id', 'class_course_id', 'day', 'start_time_schedule', 'end_time_schedule', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

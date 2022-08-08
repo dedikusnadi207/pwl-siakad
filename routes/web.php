@@ -59,6 +59,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('colleger', 'CollegerController@save');
         Route::delete('colleger/{id}', 'CollegerController@destroy');
         Route::get('colleger/data', 'CollegerController@data');
+
+        Route::get('class-course', 'ClassCourseController@index');
+        Route::post('class-course', 'ClassCourseController@save');
+        Route::delete('class-course/{id}', 'ClassCourseController@destroy');
+        Route::get('class-course/data', 'ClassCourseController@data');
     });
 
 });

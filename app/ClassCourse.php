@@ -9,9 +9,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $class_id
  * @property integer $course_id
  * @property integer $lecturer_id
- * @property string $day
- * @property string $start_time_schedule
- * @property string $end_time_schedule
  * @property string $created_at
  * @property string $updated_at
  * @property Class $class
@@ -23,7 +20,7 @@ class ClassCourse extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -31,14 +28,14 @@ class ClassCourse extends Model
     /**
      * @var array
      */
-    protected $fillable = ['class_id', 'course_id', 'lecturer_id', 'day', 'start_time_schedule', 'end_time_schedule', 'created_at', 'updated_at'];
+    protected $fillable = ['class_id', 'course_id', 'lecturer_id', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function class()
     {
-        return $this->belongsTo('App\Class');
+        return $this->belongsTo('App\AppClass');
     }
 
     /**

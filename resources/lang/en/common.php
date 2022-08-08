@@ -46,4 +46,5 @@ return [
     'academic_supervisor' => 'Academic Supervisor',
     'choose' => 'Choose',
     'back' => 'Back',
+    'class_course' => 'Class Course',
 ];
