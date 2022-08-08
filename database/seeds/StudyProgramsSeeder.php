@@ -101,5 +101,16 @@ class StudyProgramsSeeder extends Seeder
                 'updated_at' => $now,
             ]
         ]);
+
+        DB::table('colleger_study_programs')->insertOrIgnore([
+            [
+                'id' => 1,
+                'colleger_id' => 1,
+                'study_program_id' => 12,
+                'class_group' => 'B', // Kelas
+                'created_at' => $now,
+                'updated_at' => $now,
+            ]
+        ]);
     }
 }

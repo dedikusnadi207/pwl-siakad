@@ -17,7 +17,7 @@ class CreateCollegerStudyProgramsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('colleger_id')->unsigned()->index();
             $table->bigInteger('study_program_id')->unsigned()->index();
-            $table->string('session_group', 10);
+            $table->string('class_group', 10);
             $table->timestamps();
 
             $table->foreign('colleger_id')->references('id')->on('collegers');

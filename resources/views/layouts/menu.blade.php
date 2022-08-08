@@ -44,6 +44,10 @@
                         'title' => __('common.lecturer'),
                         'url' => url('lecturer'),
                         'icon' => 'bx-user'
+                    ], [
+                        'title' => __('common.colleger'),
+                        'url' => url('colleger'),
+                        'icon' => 'bx-user'
                     ]
                 ],
             ]

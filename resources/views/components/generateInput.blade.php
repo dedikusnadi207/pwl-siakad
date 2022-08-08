@@ -11,7 +11,7 @@
         $isPassword = 'password' == $inputType;
         $value = old($name) ?? $input['value'] ?? '';
     @endphp
-    <div class="mb-3 {{ $isPassword ? 'form-password-toggle' : '' }}">
+    <div class="mb-3 {{ $classAll ?? '' }} {{ $isPassword ? 'form-password-toggle' : '' }}">
         <label for="{{ $id }}" class="form-label">{{ $label }}</label>
 
         @if ('input' == $type)
@@ -35,7 +35,7 @@
                 @enderror
             @endif
         @elseif ('select' == $type)
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <select name="{{ $name }}" id="{{ $id }}" class="form-control @error($name) is-invalid @enderror" {{ $required }} {{ $readonly }}>
                     <option value="">-- Choose {{ $label }} --</option>
                     @foreach ($options as $option)

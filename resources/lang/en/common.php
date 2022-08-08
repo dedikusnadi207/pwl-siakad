@@ -40,4 +40,7 @@ return [
     'master_data' => 'Master Data',
     'lecturer' => 'Lecturer',
     'title' => 'Title',
+    'colleger' => 'Colleger',
+    'photo' => 'Photo',
+    'year' => 'Year',
 ];

@@ -27,7 +27,7 @@ class CreateCollegersTable extends Migration
             $table->date('birth_date');
             $table->string('photo')->nullable();
             $table->integer('year')->unsigned();
-            $table->string('status', 20); //ACTIVE,NOT_ACTIVE
+            $table->string('status', 20); //ACTIVE, INACTIVE
             $table->string('class_type', 3); // R, S, X
             $table->string('class_group', 3); // A, B, C
             $table->tinyInteger('semester');

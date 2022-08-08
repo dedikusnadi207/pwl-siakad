@@ -38,8 +38,21 @@
                                 'required' => 'required',
                             ]
                         ]])
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <button class="btn btn-primary d-grid w-100" type="submit">{{ __('common.save') }}</button>
+                        </div> --}}
+                        <div class="row">
+                            <div class="mb-3 {{ $data->id ? 'col-md-6' : 'col-md-12'}}">
+                                <button class="btn btn-primary d-grid w-100" type="submit">{{ $data->id ? __('common.edit') : __('common.save') }}</button>
+                            </div>
+                            @if ($data->id)
+                                <div class="mb-3 col-md-6">
+                                    <a href="{{ $activeUrl }}" class="btn btn-outline-secondary w-100" onclick="">
+                                        <i class="bx bx-reset d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">{{ __('common.cancel') }}</span>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                     </form>
                 </div>

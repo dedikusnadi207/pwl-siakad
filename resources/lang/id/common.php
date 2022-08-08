@@ -40,4 +40,7 @@ return [
     'master_data' => 'Data Master',
     'lecturer' => 'Dosen',
     'title' => 'Gelar',
+    'colleger' => 'Mahasiswa',
+    'photo' => 'Foto',
+    'year' => 'Tahun',
 ];

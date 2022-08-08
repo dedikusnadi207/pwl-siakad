@@ -32,7 +32,7 @@ class Colleger extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -61,8 +61,8 @@ class Colleger extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function collegerStudyPrograms()
+    public function collegerStudyProgram()
     {
-        return $this->hasMany('App\CollegerStudyProgram');
+        return $this->hasOne('App\CollegerStudyProgram');
     }
 }
