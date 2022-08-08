@@ -6,54 +6,65 @@
             <div class="card">
                 <h5 class="card-header">{{ __('common.lecturer') }}</h5>
                 <hr class="my-0" />
-                <div class="card-body">
-                    <form action="{{ url('lecturer') }}" method="POST">
-                        @csrf
+                <form action="{{ url('lecturer') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @include('components.uploadPhoto', [
+                        'src' => $data->user ? $data->user->publicPhoto() : asset('template/img/avatars/1.png'),
+                    ])
+                    <div class="card-body">
                         <input type="hidden" name="id" value="{{ $data->user_id }}">
-                        @include('components.generateInput',['inputs' => [
-                            [
-                                'label' => 'NIK',
-                                'name' => 'nik',
-                                'type' => 'input',
-                                'required' => 'required',
-                                'value' => $data->nik,
-                            ], [
-                                'label' => __('common.name'),
-                                'name' => 'name',
-                                'type' => 'input',
-                                'required' => 'required',
-                                'value' => $data->name,
-                            ], [
-                                'label' => __('common.title'),
-                                'name' => 'title',
-                                'type' => 'input',
-                                'required' => 'required',
-                                'value' => $data->title,
-                            ], [
-                                'label' => 'Email',
-                                'name' => 'email',
-                                'type' => 'input',
-                                'inputType' => 'email',
-                                'required' => 'required',
-                                'value' => $data->email,
-                            ], [
-                                'label' => __('common.telephone'),
-                                'name' => 'telephone',
-                                'type' => 'input',
-                                'required' => 'required',
-                                'value' => $data->telephone,
-                            ], [
-                                'label' => __('common.password'),
-                                'name' => 'password',
-                                'type' => 'input',
-                                'inputType' => 'password',
-                            ], [
-                                'label' => __('common.confirm_password'),
-                                'name' => 'password_confirmation',
-                                'type' => 'input',
-                                'inputType' => 'password',
-                            ]
-                        ]])
+                        <div class="row">
+                            @include('components.generateInput',[
+                                'classAll' => 'col-md-6',
+                                'inputs' => [
+                                    [
+                                        'label' => 'NIK',
+                                        'name' => 'nik',
+                                        'type' => 'input',
+                                        'required' => 'required',
+                                        'value' => $data->nik,
+                                    ], [
+                                        'label' => __('common.name'),
+                                        'name' => 'name',
+                                        'type' => 'input',
+                                        'required' => 'required',
+                                        'value' => $data->name,
+                                    ], [
+                                        'label' => __('common.title'),
+                                        'name' => 'title',
+                                        'type' => 'input',
+                                        'required' => 'required',
+                                        'value' => $data->title,
+                                    ], [
+                                        'label' => 'Email',
+                                        'name' => 'email',
+                                        'type' => 'input',
+                                        'inputType' => 'email',
+                                        'required' => 'required',
+                                        'value' => $data->email,
+                                    ], [
+                                        'label' => __('common.telephone'),
+                                        'name' => 'telephone',
+                                        'type' => 'input',
+                                        'required' => 'required',
+                                        'value' => $data->telephone,
+                                    ]
+                                ]
+                            ])
+                            @include('components.generateInput', ['inputs' => [
+                                [
+                                    'label' => __('common.password'),
+                                    'name' => 'password',
+                                    'type' => 'input',
+                                    'inputType' => 'password',
+                                ], [
+                                    'label' => __('common.confirm_password'),
+                                    'name' => 'password_confirmation',
+                                    'type' => 'input',
+                                    'inputType' => 'password',
+                                ]
+                            ]])
+                        </div>
                         {{-- <div class="mb-3">
                             <button class="btn btn-primary d-grid w-100" type="submit">{{ __('common.save') }}</button>
                         </div> --}}
@@ -70,8 +81,8 @@
                                 </div>
                             @endif
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
                 <div class="card-body">
                 @include('components.generateTable',['data' => [
                     'url' => url('lecturer/data'),
@@ -81,6 +92,7 @@
                         'title' => __('common.title'),
                         'email' => 'Email',
                         'telephone' => __('common.telephone'),
+                        'photo' => __('common.photo'),
                         'action' => __('common.action'),
                     ],
                 ]])

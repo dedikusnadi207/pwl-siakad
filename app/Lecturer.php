@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $email
  * @property string $title
  * @property string $telephone
+ * @property string $photo
  * @property string $created_at
  * @property string $updated_at
  * @property User $user
@@ -22,7 +23,7 @@ class Lecturer extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -30,7 +31,7 @@ class Lecturer extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'nik', 'name', 'email', 'title', 'telephone', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'nik', 'name', 'email', 'title', 'telephone', 'photo', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

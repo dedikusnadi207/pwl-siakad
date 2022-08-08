@@ -21,6 +21,7 @@ class CreateLecturersTable extends Migration
             $table->string('email', 100);
             $table->string('title', 100);
             $table->string('telephone', 20);
+            $table->string('photo')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

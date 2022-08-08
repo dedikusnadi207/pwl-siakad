@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Constants\UserType;
 use App\Lecturer;
+use App\Services\FileService;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Hash;
 
 class LecturerController extends Controller
 {
+    private FileService $fileService;
+
+    public function __construct(
+        FileService $fileService
+    ) {
+        $this->fileService = $fileService;
+    }
+
     public function index(Request $request)
     {
         $data = Lecturer::firstOrNew(['user_id' => $request->id]);
@@ -29,7 +38,8 @@ class LecturerController extends Controller
             'email' => 'required|email|unique:users,email,'.$request->id,
             'title' => 'required',
             'telephone' => 'required|min:8|max:16',
-            'password' => ($request->id ? 'nullable' : 'required').'|min:8|confirmed'
+            'password' => ($request->id ? 'nullable' : 'required').'|min:8|confirmed',
+            'photo' => 'nullable|file|max:800',
         ])->validate();
         DB::beginTransaction();
 
@@ -54,6 +64,7 @@ class LecturerController extends Controller
                 'email' => $request->email,
                 'title' => $request->title,
                 'telephone' => purifyTelephone($request->telephone),
+                'photo' => $this->fileService->upload($request->file('photo'), 'lecturer'),
             ]
         );
         DB::commit();
@@ -81,6 +92,12 @@ class LecturerController extends Controller
                 $url = url('lecturer');
 
                 return view('components.action', compact('data', 'url'));
+            })
+            ->addColumn('photo', function ($data)
+            {
+                $photo = $data->user->publicPhoto();
+
+                return view('components.tablePhoto', compact('photo'));
             })
             ->make(true);
     }
