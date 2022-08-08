@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property integer $id
  * @property integer $user_id
+ * @property integer $study_program_id
  * @property string $nik
  * @property string $npm
  * @property string $name
@@ -24,9 +25,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property boolean $semester
  * @property string $created_at
  * @property string $updated_at
+ * @property StudyProgram $studyProgram
  * @property User $user
  * @property CollegerStudyPlanCard[] $collegerStudyPlanCards
- * @property CollegerStudyProgram[] $collegerStudyPrograms
  */
 class Colleger extends Model
 {
@@ -40,7 +41,7 @@ class Colleger extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'nik', 'npm', 'name', 'email', 'telephone', 'address', 'npwp', 'birth_place', 'birth_date', 'photo', 'year', 'status', 'class_type', 'class_group', 'semester', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'study_program_id', 'nik', 'npm', 'name', 'email', 'telephone', 'address', 'npwp', 'birth_place', 'birth_date', 'photo', 'year', 'status', 'class_type', 'class_group', 'semester', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -59,10 +60,10 @@ class Colleger extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function collegerStudyProgram()
+    public function studyProgram()
     {
-        return $this->hasOne('App\CollegerStudyProgram');
+        return $this->belongsTo('App\StudyProgram');
     }
 }

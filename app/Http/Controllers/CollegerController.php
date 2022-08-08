@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\AppClass;
 use App\Constants\UserType;
 use App\Colleger;
-use App\CollegerStudyProgram;
 use App\Constants\CollegerStatus;
 use App\Services\FileService;
 use App\StudyProgram;
@@ -89,7 +88,7 @@ class CollegerController extends Controller
             ['id' => $request->id],
             $data,
         );
-        $colleger = Colleger::updateOrCreate(
+        Colleger::updateOrCreate(
             ['user_id' => $user->id],
             [
                 'user_id' => $user->id,
@@ -108,14 +107,7 @@ class CollegerController extends Controller
                 'class_type' => $request->class_type,
                 'class_group' => $request->class_group,
                 'semester' => $request->semester,
-            ]
-        );
-        CollegerStudyProgram::updateOrCreate(
-            ['colleger_id' => $colleger->id],
-            [
-                'colleger_id' => $colleger->id,
                 'study_program_id' => $request->study_program_id,
-                'class_group' => $request->class_group,
             ]
         );
         DB::commit();
@@ -149,6 +141,10 @@ class CollegerController extends Controller
                 $photo = $data->user->publicPhoto();
 
                 return view('components.tablePhoto', compact('photo'));
+            })
+            ->addColumn('study_program_id', function ($data)
+            {
+                return $data->studyProgram->name;
             })
             ->make(true);
     }

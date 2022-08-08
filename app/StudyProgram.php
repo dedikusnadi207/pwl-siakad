@@ -12,13 +12,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  * @property Faculty $faculty
- * @property CollegerStudyProgram[] $collegerStudyPrograms
  */
 class StudyProgram extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -34,13 +33,5 @@ class StudyProgram extends Model
     public function faculty()
     {
         return $this->belongsTo('App\Faculty');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function collegerStudyPrograms()
-    {
-        return $this->hasMany('App\CollegerStudyProgram');
     }
 }

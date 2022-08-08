@@ -31,9 +31,11 @@ class CreateCollegersTable extends Migration
             $table->string('class_type', 3); // R, S, X
             $table->string('class_group', 3); // A, B, C
             $table->tinyInteger('semester');
+            $table->bigInteger('study_program_id')->unsigned()->index();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('study_program_id')->references('id')->on('study_programs');
         });
     }
 

@@ -118,6 +118,7 @@ class UserSeeder extends Seeder
                 'class_type' => 'X', // Kelas
                 'class_group' => 'B', // Kelas
                 'semester' => '6', // current semester
+                'study_program_id' => 12,
                 'created_at' => $now,
                 'updated_at' => $now,
             ]

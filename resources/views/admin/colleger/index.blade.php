@@ -103,7 +103,7 @@
                                         'name' => 'study_program_id',
                                         'type' => 'select',
                                         'options' => $studyPrograms,
-                                        'value' => $data->collegerStudyProgram->study_program_id ?? '',
+                                        'value' => $data->study_program_id ?? '',
                                     ]
                                 ]
                             ])
@@ -155,6 +155,7 @@
                         'class_type' => __('common.class_type'),
                         'class_group' => __('common.class_group'),
                         'semester' => __('common.semester'),
+                        'study_program_id' => __('common.study_program'),
                         'action' => __('common.action'),
                     ],
                 ]])
