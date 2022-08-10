@@ -10,21 +10,26 @@
                     <form action="{{ url('class') }}" method="POST">
                         @csrf
                         <input type="hidden" name="id" value="{{ $data->id }}">
-                        @include('components.generateInput',['inputs' => [
-                            [
-                                'label' => __('common.name'),
-                                'name' => 'name',
-                                'type' => 'input',
-                                'required' => 'required',
-                                'value' => $data->name,
-                            ], [
-                                'label' => __('common.class_type'),
-                                'name' => 'type',
-                                'type' => 'input',
-                                'required' => 'required',
-                                'value' => $data->type,
-                            ]
-                        ]])
+                        <div class="row">
+                            @include('components.generateInput',[
+                                'classAll' => 'col-md-6',
+                                'inputs' => [
+                                    [
+                                        'label' => __('common.name'),
+                                        'name' => 'name',
+                                        'type' => 'input',
+                                        'required' => 'required',
+                                        'value' => $data->name,
+                                    ], [
+                                        'label' => __('common.class_type'),
+                                        'name' => 'type',
+                                        'type' => 'input',
+                                        'required' => 'required',
+                                        'value' => $data->type,
+                                    ]
+                                ],
+                            ])
+                        </div>
                         {{-- <div class="mb-3">
                             <button class="btn btn-primary d-grid w-100" type="submit">{{ __('common.save') }}</button>
                         </div> --}}

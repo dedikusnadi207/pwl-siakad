@@ -10,34 +10,39 @@
                     <form action="{{ url('admin') }}" method="POST">
                         @csrf
                         <input type="hidden" name="id" value="{{ $data->id }}">
-                        @include('components.generateInput',['inputs' => [
-                            [
-                                'label' => __('common.name'),
-                                'name' => 'name',
-                                'type' => 'input',
-                                'required' => 'required',
-                                'value' => $data->name,
-                            ], [
-                                'label' => 'Email',
-                                'name' => 'email',
-                                'type' => 'input',
-                                'inputType' => 'email',
-                                'required' => 'required',
-                                'value' => $data->email,
-                            ], [
-                                'label' => __('common.password'),
-                                'name' => 'password',
-                                'type' => 'input',
-                                'inputType' => 'password',
-                                'required' => 'required',
-                            ], [
-                                'label' => __('common.confirm_password'),
-                                'name' => 'password_confirmation',
-                                'type' => 'input',
-                                'inputType' => 'password',
-                                'required' => 'required',
-                            ]
-                        ]])
+                        <div class="row">
+                            @include('components.generateInput',[
+                                'classAll' => 'col-md-6',
+                                'inputs' => [
+                                    [
+                                        'label' => __('common.name'),
+                                        'name' => 'name',
+                                        'type' => 'input',
+                                        'required' => 'required',
+                                        'value' => $data->name,
+                                    ], [
+                                        'label' => 'Email',
+                                        'name' => 'email',
+                                        'type' => 'input',
+                                        'inputType' => 'email',
+                                        'required' => 'required',
+                                        'value' => $data->email,
+                                    ], [
+                                        'label' => __('common.password'),
+                                        'name' => 'password',
+                                        'type' => 'input',
+                                        'inputType' => 'password',
+                                        'required' => 'required',
+                                    ], [
+                                        'label' => __('common.confirm_password'),
+                                        'name' => 'password_confirmation',
+                                        'type' => 'input',
+                                        'inputType' => 'password',
+                                        'required' => 'required',
+                                    ]
+                                ],
+                            ])
+                        </div>
                         {{-- <div class="mb-3">
                             <button class="btn btn-primary d-grid w-100" type="submit">{{ __('common.save') }}</button>
                         </div> --}}

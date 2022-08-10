@@ -47,4 +47,5 @@ return [
     'choose' => 'Choose',
     'back' => 'Back',
     'class_course' => 'Class Course',
+    'accreditation' => 'Accreditation',
 ];

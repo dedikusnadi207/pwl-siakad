@@ -47,4 +47,5 @@ return [
     'choose' => 'Pilih',
     'back' => 'Kembali',
     'class_course' => 'Mata Kuliah Kelas',
+    'accreditation' => 'Akreditasi',
 ];

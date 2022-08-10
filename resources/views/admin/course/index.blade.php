@@ -10,28 +10,33 @@
                     <form action="{{ url('course') }}" method="POST">
                         @csrf
                         <input type="hidden" name="id" value="{{ $data->id }}">
-                        @include('components.generateInput',['inputs' => [
-                            [
-                                'label' => __('common.code'),
-                                'name' => 'code',
-                                'type' => 'input',
-                                'required' => 'required',
-                                'value' => $data->code,
-                            ], [
-                                'label' => __('common.name'),
-                                'name' => 'name',
-                                'type' => 'input',
-                                'required' => 'required',
-                                'value' => $data->name,
-                            ], [
-                                'label' => 'SKS',
-                                'name' => 'sks',
-                                'type' => 'input',
-                                'inputType' => 'number',
-                                'required' => 'required',
-                                'value' => $data->sks,
-                            ]
-                        ]])
+                        <div class="row">
+                            @include('components.generateInput',[
+                                'classAll' => 'col-md-6',
+                                'inputs' => [
+                                    [
+                                        'label' => __('common.code'),
+                                        'name' => 'code',
+                                        'type' => 'input',
+                                        'required' => 'required',
+                                        'value' => $data->code,
+                                    ], [
+                                        'label' => __('common.name'),
+                                        'name' => 'name',
+                                        'type' => 'input',
+                                        'required' => 'required',
+                                        'value' => $data->name,
+                                    ], [
+                                        'label' => 'SKS',
+                                        'name' => 'sks',
+                                        'type' => 'input',
+                                        'inputType' => 'number',
+                                        'required' => 'required',
+                                        'value' => $data->sks,
+                                    ]
+                                ],
+                            ])
+                        </div>
                         {{-- <div class="mb-3">
                             <button class="btn btn-primary d-grid w-100" type="submit">{{ __('common.save') }}</button>
                         </div> --}}

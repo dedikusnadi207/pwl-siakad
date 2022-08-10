@@ -4,27 +4,39 @@
     <div class="row">
         <div class="col-md-12 col-12 mb-md-0 mb-4">
             <div class="card">
-                <h5 class="card-header">{{ __('common.faculty') }}</h5>
+                <h5 class="card-header">{{ __('common.study_program') }}</h5>
                 <hr class="my-0" />
                 <div class="card-body">
-                    <form action="{{ url('faculty') }}" method="POST">
+                    <form action="{{ url('study-program') }}" method="POST">
                         @csrf
                         <input type="hidden" name="id" value="{{ $data->id }}">
-                        @include('components.generateInput',['inputs' => [
-                            [
-                                'label' => __('common.short_name'),
-                                'name' => 'short_name',
-                                'type' => 'input',
-                                'required' => 'required',
-                                'value' => $data->short_name,
-                            ], [
-                                'label' => __('common.name'),
-                                'name' => 'name',
-                                'type' => 'input',
-                                'required' => 'required',
-                                'value' => $data->name,
-                            ]
-                        ]])
+                        <div class="row">
+                            @include('components.generateInput',[
+                                'classAll' => 'col-md-6',
+                                'inputs' => [
+                                    [
+                                        'label' => __('common.faculty'),
+                                        'name' => 'faculty_id',
+                                        'type' => 'select',
+                                        'options' => $faculties,
+                                        'required' => 'required',
+                                        'value' => $data->faculty_id,
+                                    ], [
+                                        'label' => __('common.name'),
+                                        'name' => 'name',
+                                        'type' => 'input',
+                                        'required' => 'required',
+                                        'value' => $data->name,
+                                    ], [
+                                        'label' => __('common.accreditation'),
+                                        'name' => 'accreditation',
+                                        'type' => 'input',
+                                        'required' => 'required',
+                                        'value' => $data->accreditation,
+                                    ]
+                                ],
+                            ])
+                        </div>
                         {{-- <div class="mb-3">
                             <button class="btn btn-primary d-grid w-100" type="submit">{{ __('common.save') }}</button>
                         </div> --}}
@@ -45,10 +57,11 @@
                 </div>
                 <div class="card-body">
                 @include('components.generateTable',['data' => [
-                    'url' => url('faculty/data'),
+                    'url' => url('study-program/data'),
                     'columns' => [
-                        'short_name' => __('common.short_name'),
+                        'faculty.name' => __('common.faculty'),
                         'name' => __('common.name'),
+                        'accreditation' => __('common.accreditation'),
                         'action' => __('common.action'),
                     ],
                 ]])
