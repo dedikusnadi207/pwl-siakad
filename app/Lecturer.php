@@ -56,4 +56,9 @@ class Lecturer extends Model
     {
         return $this->hasMany('App\ClassCourse');
     }
+
+    public function publicName()
+    {
+        return $this->attributes['name'].' '.$this->attributes['title'];
+    }
 }

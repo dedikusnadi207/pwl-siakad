@@ -17,6 +17,7 @@ class CreateStudyPlanCardsTable extends Migration
             $table->bigIncrements('id');
             // $table->bigInteger('colleger_id')->unsigned()->index();
             $table->string('class_type', 3); // R, S, X
+            $table->string('class_group', 3); // A, B, C, D
             $table->tinyInteger('semester');
             // $table->integer('year')->unsigned();
             // $table->string('status', 20);

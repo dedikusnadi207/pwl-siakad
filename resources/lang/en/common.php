@@ -48,4 +48,9 @@ return [
     'back' => 'Back',
     'class_course' => 'Class Course',
     'accreditation' => 'Accreditation',
+    'study_plan_card' => 'Study Plan Card',
+    'detail' => 'Detail',
+    'day' => 'Day',
+    'start_time_schedule' => 'Start Time Schedule',
+    'end_time_schedule' => 'End Time Schedule',
 ];

@@ -57,6 +57,10 @@
                         'title' => __('common.class_course'),
                         'url' => url('class-course'),
                         'icon' => 'bx-book'
+                    ], [
+                        'title' => __('common.study_plan_card'),
+                        'url' => url('study-plan-card'),
+                        'icon' => 'bx-book'
                     ]
                 ],
             ]

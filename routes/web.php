@@ -64,6 +64,16 @@ Route::middleware(['auth'])->group(function () {
         Route::post('class-course', 'ClassCourseController@save');
         Route::delete('class-course/{id}', 'ClassCourseController@destroy');
         Route::get('class-course/data', 'ClassCourseController@data');
+
+        Route::get('study-plan-card', 'StudyPlanCardController@index');
+        Route::post('study-plan-card', 'StudyPlanCardController@save');
+        Route::delete('study-plan-card/{id}', 'StudyPlanCardController@destroy');
+        Route::get('study-plan-card/data', 'StudyPlanCardController@data');
+
+        Route::get('study-plan-card/{studyPlanCardId}/detail', 'StudyPlanCardController@detail');
+        Route::post('study-plan-card/{studyPlanCardId}/detail', 'StudyPlanCardController@saveDetail');
+        Route::delete('study-plan-card/{studyPlanCardId}/detail/{id}', 'StudyPlanCardController@destroyDetail');
+        Route::get('study-plan-card/{studyPlanCardId}/detail/data', 'StudyPlanCardController@detailData');
     });
 
 });

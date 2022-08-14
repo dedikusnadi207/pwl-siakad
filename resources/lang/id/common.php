@@ -48,4 +48,9 @@ return [
     'back' => 'Kembali',
     'class_course' => 'Mata Kuliah Kelas',
     'accreditation' => 'Akreditasi',
+    'study_plan_card' => 'Kartu Rencana Studi',
+    'detail' => 'Detail',
+    'day' => 'Hari',
+    'start_time_schedule' => 'Jadwal Waktu Mulai',
+    'end_time_schedule' => 'Jadwal Waktu Selesai',
 ];

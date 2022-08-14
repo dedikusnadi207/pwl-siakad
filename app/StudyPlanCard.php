@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property integer $id
  * @property string $class_type
+ * @property string $class_group
  * @property boolean $semester
  * @property string $created_at
  * @property string $updated_at
@@ -25,7 +26,7 @@ class StudyPlanCard extends Model
     /**
      * @var array
      */
-    protected $fillable = ['class_type', 'semester', 'created_at', 'updated_at'];
+    protected $fillable = ['class_type', 'class_group', 'semester', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

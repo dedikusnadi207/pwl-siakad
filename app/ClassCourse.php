@@ -61,4 +61,9 @@ class ClassCourse extends Model
     {
         return $this->hasMany('App\StudyPlanCardDetail');
     }
+
+    public function publicName()
+    {
+        return $this->course->name.' - '.$this->lecturer->publicName();
+    }
 }

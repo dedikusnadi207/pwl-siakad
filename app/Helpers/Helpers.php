@@ -11,3 +11,18 @@ if (! function_exists('purifyTelephone')) {
         return trim($number);
     }
 }
+
+if (! function_exists('dayOptions')) {
+    function dayOptions()
+    {
+        return [
+            ['value' => 'sunday', 'text' => __('day.sunday')],
+            ['value' => 'monday', 'text' => __('day.monday')],
+            ['value' => 'tuesday', 'text' => __('day.tuesday')],
+            ['value' => 'wednesday', 'text' => __('day.wednesday')],
+            ['value' => 'thursday', 'text' => __('day.thursday')],
+            ['value' => 'friday', 'text' => __('day.friday')],
+            ['value' => 'saturday', 'text' => __('day.saturday')],
+        ];
+    }
+}
