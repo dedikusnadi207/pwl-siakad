@@ -33,35 +33,6 @@
                                     'required' => 'required',
                                     'options' => $lecturers,
                                     'value' => $data->lecturer_id,
-                                // ], [
-                                //     'label' => __('common.day'),
-                                //     'name' => 'day',
-                                //     'type' => 'select',
-                                //     'options' => [
-                                //         ['value' => 'sunday', 'text' => __('day.sunday')],
-                                //         ['value' => 'monday', 'text' => __('day.monday')],
-                                //         ['value' => 'tuesday', 'text' => __('day.tuesday')],
-                                //         ['value' => 'wednesday', 'text' => __('day.wednesday')],
-                                //         ['value' => 'thursday', 'text' => __('day.thursday')],
-                                //         ['value' => 'friday', 'text' => __('day.friday')],
-                                //         ['value' => 'saturday', 'text' => __('day.saturday')],
-                                //     ],
-                                //     'required' => 'required',
-                                //     'value' => $data->day,
-                                // ], [
-                                //     'label' => __('common.start_time_schedule'),
-                                //     'name' => 'start_time_schedule',
-                                //     'type' => 'input',
-                                //     'inputType' => 'time',
-                                //     'required' => 'required',
-                                //     'value' => $data->start_time_schedule,
-                                // ], [
-                                //     'label' => __('common.end_time_schedule'),
-                                //     'name' => 'end_time_schedule',
-                                //     'type' => 'input',
-                                //     'inputType' => 'time',
-                                //     'required' => 'required',
-                                //     'value' => $data->end_time_schedule,
                                 ],
                             ]])
                         </div>
@@ -84,12 +55,10 @@
                 @include('components.generateTable',['data' => [
                     'url' => url('class-course/data'),
                     'columns' => [
+                        'id' => 'ID',
                         'class.name' => __('common.class'),
                         'course.name' => __('common.course'),
                         'lecturer.name' => __('common.lecturer'),
-                        // 'day' => __('common.day'),
-                        // 'start_time_schedule' => __('common.start_time_schedule'),
-                        // 'end_time_schedule' => __('common.end_time_schedule'),
                         'action' => __('common.action'),
                     ],
                 ]])

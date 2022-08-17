@@ -84,6 +84,7 @@
                                         'label' => __('common.class_type'),
                                         'name' => 'class_type',
                                         'type' => 'select',
+                                        'required' => 'required',
                                         'options' => $classTypes,
                                         'value' => $data->class_type,
                                     ], [
@@ -92,6 +93,24 @@
                                         'type' => 'input',
                                         'required' => 'required',
                                         'value' => $data->class_group,
+                                    ], [
+                                        'label' => __('common.study_program'),
+                                        'name' => 'study_program_id',
+                                        'type' => 'select',
+                                        'required' => 'required',
+                                        'options' => $studyPrograms,
+                                        'value' => $data->study_program_id ?? '',
+                                    ], [
+                                        'label' => __('common.status'),
+                                        'name' => 'is_active',
+                                        'type' => 'select',
+                                        'options' => [
+                                            ['value' => 1, 'text' => __('status.active')],
+                                            ['value' => 0, 'text' => __('status.not_active')],
+                                        ],
+                                        'required' => 'required',
+                                        'option_only' => true,
+                                        'value' => $data->is_active ?? 1,
                                     ]
                                 ]
                             ])
@@ -118,6 +137,8 @@
                         'year' => __('common.year'),
                         'class_type' => __('common.class_type'),
                         'class_group' => __('common.class_group'),
+                        'study_program.name' => __('common.study_program'),
+                        'status' => __('common.status'),
                         'action' => __('common.action'),
                     ],
                 ]])

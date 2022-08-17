@@ -65,6 +65,32 @@
                 ],
             ]
         ]);
+    } elseif (Auth::user()->isColleger()) {
+        $menus = array_merge($menus, [
+            [
+                'group' => __('common.academic'),
+                'children' => [
+                    [
+                        'title' => __('common.study_plan_card'),
+                        'url' => url('clg/study-plan-card'),
+                        'icon' => 'bx-book'
+                    ]
+                ],
+            ]
+        ]);
+    } elseif (Auth::user()->isLecturer()) {
+        $menus = array_merge($menus, [
+            [
+                'group' => __('common.academic'),
+                'children' => [
+                    [
+                        'title' => __('common.study_plan_card'),
+                        'url' => url('lct/study-plan-card'),
+                        'icon' => 'bx-book'
+                    ]
+                ],
+            ]
+        ]);
     }
 @endphp
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">

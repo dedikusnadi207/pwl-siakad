@@ -17,12 +17,13 @@ class CreateCollegerStudyPlanCardsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('colleger_id')->unsigned()->index();
             $table->bigInteger('study_plan_card_id')->unsigned()->index();
-            $table->integer('year')->unsigned();
+            $table->bigInteger('period_id')->unsigned()->index();
             $table->string('status', 20);
             $table->timestamps();
 
             $table->foreign('colleger_id')->references('id')->on('collegers');
             $table->foreign('study_plan_card_id')->references('id')->on('study_plan_cards');
+            $table->foreign('period_id')->references('id')->on('periods');
         });
     }
 

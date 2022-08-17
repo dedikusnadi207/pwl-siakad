@@ -38,9 +38,6 @@ class ClassCourseController extends Controller
             'class_id' => 'required',
             'course_id' => 'required',
             'lecturer_id' => 'required',
-            // 'day' => 'required',
-            // 'start_time_schedule' => 'required',
-            // 'end_time_schedule' => 'required',
         ])->validate();
         ClassCourse::updateOrCreate(
             ['id' => $request->id],
@@ -48,9 +45,6 @@ class ClassCourseController extends Controller
                 'class_id' => $request->class_id,
                 'course_id' => $request->course_id,
                 'lecturer_id' => $request->lecturer_id,
-                // 'day' => $request->day,
-                // 'start_time_schedule' => $request->start_time_schedule,
-                // 'end_time_schedule' => $request->end_time_schedule,
             ],
         );
 
@@ -70,18 +64,6 @@ class ClassCourseController extends Controller
     public function data()
     {
         return Datatables::of(ClassCourse::with('class','course','lecturer'))
-            // ->addColumn('day', function ($data)
-            // {
-            //     return __('day.'.$data->day);
-            // })
-            // ->addColumn('start_time_schedule', function ($data)
-            // {
-            //     return substr($data->start_time_schedule, 0, 5);
-            // })
-            // ->addColumn('end_time_schedule', function ($data)
-            // {
-            //     return substr($data->end_time_schedule, 0, 5);
-            // })
             ->addColumn('action', function ($data)
             {
                 $url = url('class-course');

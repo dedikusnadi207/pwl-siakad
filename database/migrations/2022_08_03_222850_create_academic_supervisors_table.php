@@ -19,9 +19,12 @@ class CreateAcademicSupervisorsTable extends Migration
             $table->integer('year')->unsigned();
             $table->string('class_type', 3);
             $table->string('class_group', 3);
+            $table->bigInteger('study_program_id')->unsigned()->index();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
 
             $table->foreign('lecturer_id')->references('id')->on('lecturers');
+            $table->foreign('study_program_id')->references('id')->on('study_programs');
         });
     }
 

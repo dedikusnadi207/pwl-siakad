@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\AppClass;
 use App\ClassCourse;
+use App\Http\Controllers\Controller;
 use App\StudyPlanCard;
 use App\StudyPlanCardDetail;
 use Illuminate\Http\Request;

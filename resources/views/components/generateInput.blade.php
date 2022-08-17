@@ -37,7 +37,9 @@
         @elseif ('select' == $type)
             <div class="col-md-12">
                 <select name="{{ $name }}" id="{{ $id }}" class="form-control @error($name) is-invalid @enderror" {{ $required }} {{ $readonly }}>
+                    @if (!isset($input['option_only']))
                     <option value="">-- {{ __('common.choose') }} {{ $label }} --</option>
+                    @endif
                     @foreach ($options as $option)
                         <option value="{{ $option['value'] }}" {{ $value == $option['value'] ? 'selected' : '' }}>{{ $option['text'] }}</option>
                     @endforeach
@@ -50,6 +52,11 @@
             </div>
         @elseif ('textarea' == $type)
             <textarea id="{{ $id }}" class="form-control @error($name) is-invalid @enderror" name="{{$name}}" {{ $required }} {{ $readonly }} rows="3">{{ $value }}</textarea>
+        @elseif ('checkbox' == $type)
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="{{$id}}" name="{{ $name }}" {{ ($input['is_selected'] ?? false) ? 'checked' : '' }}>
+                <label class="form-check-label" for="{{$id}}"> {{ $label }} </label>
+            </div>
         @endif
     </div>
 @endforeach

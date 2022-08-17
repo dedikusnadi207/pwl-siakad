@@ -47,6 +47,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('datatables/datatables.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('sweetalert/sweetalert2.min.css')}}"/>
+    @stack('css')
 
 
     <!-- Helpers -->
@@ -255,7 +256,7 @@
                 }
             })
         }
-        function deleteConfirmation(url, tableId = null) {
+        function deleteConfirmation(url, reloadTable = true, tableId = null, action = null) {
             confirmation(()=>{
                 $.ajax({
                     method:"DELETE",
@@ -265,19 +266,21 @@
                     }
                 }).done(function(data, message, xhr){
                     if(xhr.status == 200){
-                        console.log(data);
-                        console.log(typeof(data));
-                        console.log(typeof(data) == 'string');
                         if (typeof(data) == 'string') {
                             $('#alertSuccess').text(data).show();
                         }
                         // $(window).scrollTop(0);
                         $("html, body").animate({ scrollTop: 0 });
                         // window.scrollTo({ top: 0, behavior: 'smooth' });
-                        if (tableId) {
-                            $(tableId).ajax.reload();
-                        } else {
-                            oTable.ajax.reload();
+                        if (reloadTable) {
+                            if (tableId) {
+                                $(tableId).ajax.reload();
+                            } else {
+                                oTable.ajax.reload();
+                            }
+                        }
+                        if (action) {
+                            setTimeout(action, 1500);
                         }
                     }
                 })

@@ -65,15 +65,28 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('class-course/{id}', 'ClassCourseController@destroy');
         Route::get('class-course/data', 'ClassCourseController@data');
 
-        Route::get('study-plan-card', 'StudyPlanCardController@index');
-        Route::post('study-plan-card', 'StudyPlanCardController@save');
-        Route::delete('study-plan-card/{id}', 'StudyPlanCardController@destroy');
-        Route::get('study-plan-card/data', 'StudyPlanCardController@data');
+        Route::get('study-plan-card', 'Admin\StudyPlanCardController@index');
+        Route::post('study-plan-card', 'Admin\StudyPlanCardController@save');
+        Route::delete('study-plan-card/{id}', 'Admin\StudyPlanCardController@destroy');
+        Route::get('study-plan-card/data', 'Admin\StudyPlanCardController@data');
 
-        Route::get('study-plan-card/{studyPlanCardId}/detail', 'StudyPlanCardController@detail');
-        Route::post('study-plan-card/{studyPlanCardId}/detail', 'StudyPlanCardController@saveDetail');
-        Route::delete('study-plan-card/{studyPlanCardId}/detail/{id}', 'StudyPlanCardController@destroyDetail');
-        Route::get('study-plan-card/{studyPlanCardId}/detail/data', 'StudyPlanCardController@detailData');
+        Route::get('study-plan-card/{studyPlanCardId}/detail', 'Admin\StudyPlanCardController@detail');
+        Route::post('study-plan-card/{studyPlanCardId}/detail', 'Admin\StudyPlanCardController@saveDetail');
+        Route::delete('study-plan-card/{studyPlanCardId}/detail/{id}', 'Admin\StudyPlanCardController@destroyDetail');
+        Route::get('study-plan-card/{studyPlanCardId}/detail/data', 'Admin\StudyPlanCardController@detailData');
+    });
+
+    Route::middleware(['user.type:colleger'])->prefix('clg')->group(function () {
+        Route::get('study-plan-card', 'Colleger\StudyPlanCardController@index');
+        Route::post('study-plan-card', 'Colleger\StudyPlanCardController@save');
+        Route::delete('study-plan-card/{parentId}/{id}', 'Colleger\StudyPlanCardController@deleteDetail');
+    });
+
+    Route::middleware(['user.type:lecturer'])->prefix('lct')->group(function () {
+        Route::get('study-plan-card', 'Lecturer\StudyPlanCardController@index');
+        Route::get('study-plan-card/{academicSupervisorId}/data', 'Lecturer\StudyPlanCardController@data');
+        Route::get('study-plan-card/{collegerStudyPlanCardId}/detail', 'Lecturer\StudyPlanCardController@collegerStudyPlanCardDetail');
+        Route::post('study-plan-card/{collegerStudyPlanCardId}/approval', 'Lecturer\StudyPlanCardController@approval');
     });
 
 });

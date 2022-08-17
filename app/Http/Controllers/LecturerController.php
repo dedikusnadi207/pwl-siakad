@@ -7,6 +7,7 @@ use App\AppClass;
 use App\Constants\UserType;
 use App\Lecturer;
 use App\Services\FileService;
+use App\StudyProgram;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -122,7 +123,12 @@ class LecturerController extends Controller
         }
         $activeUrl = url('lecturer/'.$lecturerId.'/academic-supervisor');
 
-        return view('admin.lecturer.academic-supervisor', compact('data', 'lecturer', 'classTypes', 'activeUrl'));
+        $studyPrograms = [];
+        foreach (StudyProgram::all(['id', 'name']) as $value) {
+            $studyPrograms[] = ['value' => $value->id, 'text' => $value->name];
+        }
+
+        return view('admin.lecturer.academic-supervisor', compact('data', 'lecturer', 'classTypes', 'activeUrl', 'studyPrograms'));
     }
 
     public function saveAcademicSupervisor(Request $request, $lecturerId)
@@ -131,6 +137,8 @@ class LecturerController extends Controller
             'year' => 'required',
             'class_type' => 'required',
             'class_group' => 'required',
+            'study_program_id' => 'required',
+            'is_active' => 'in:0,1',
         ])->validate();
         AcademicSupervisor::updateOrCreate(
             ['id' => $request->id],
@@ -139,6 +147,8 @@ class LecturerController extends Controller
                 'year' => $request->year,
                 'class_type' => $request->class_type,
                 'class_group' => $request->class_group,
+                'study_program_id' => $request->study_program_id,
+                'is_active' => $request->is_active,
             ]
         );
 
@@ -147,12 +157,20 @@ class LecturerController extends Controller
 
     public function academicSupervisorData($lecturerId)
     {
-        return Datatables::of(AcademicSupervisor::where('lecturer_id', $lecturerId))
+        return Datatables::of(AcademicSupervisor::with('studyProgram')->where('lecturer_id', $lecturerId))
             ->addColumn('action', function ($data)
             {
                 $url = url('lecturer/'.$data->lecturer_id.'/academic-supervisor');
 
                 return view('components.action', compact('data', 'url'));
+            })
+            ->addColumn('status', function ($data)
+            {
+                if ($data->is_active) {
+                    return '<span class="badge bg-success">'.__('status.active').'</span>';
+                } else {
+                    return '<span class="badge bg-secondary">'.__('status.not_active').'</span>';
+                }
             })
             ->make(true);
     }

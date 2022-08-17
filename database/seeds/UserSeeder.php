@@ -209,6 +209,14 @@ class UserSeeder extends Seeder
                 'user_type' => UserType::LECTURER,
                 'created_at' => $now,
                 'updated_at' => $now,
+            ], [
+                'id' => 25,
+                'name' => 'Alusyanti Primawati',
+                'email' => 'alusyantiprimawati@gmail.com',
+                'password' => Hash::make('alusyantiprimawati'),
+                'user_type' => UserType::LECTURER,
+                'created_at' => $now,
+                'updated_at' => $now,
             ]
         ]);
         DB::table('collegers')->insertOrIgnore([
@@ -454,6 +462,16 @@ class UserSeeder extends Seeder
                 'email' => 'mahyudi@gmail.com',
                 'title' => 'M.T',
                 'telephone' => '6282212312132',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ], [
+                'id' => 23,
+                'user_id' => 25,
+                'nik' => '221133445566771133',
+                'name' => 'Alusyanti Primawati',
+                'email' => 'alusyantiprimawati@gmail.com',
+                'title' => 'S.Kom',
+                'telephone' => '6282212312133',
                 'created_at' => $now,
                 'updated_at' => $now,
             ]
