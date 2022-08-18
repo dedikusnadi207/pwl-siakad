@@ -21,7 +21,7 @@ class AcademicSupervisor extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -45,5 +45,10 @@ class AcademicSupervisor extends Model
     public function studyProgram()
     {
         return $this->belongsTo('App\StudyProgram');
+    }
+
+    public function publicName()
+    {
+        return $this->attributes['year'].' - '.$this->attributes['class_type'].$this->attributes['class_group'].' - '.$this->studyProgram->name;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'admin' => 'Admin',
     'name' => 'Nama',
     'password' => 'Kata Sandi',
     'confirm_password' => 'Konfirmasi Kata Sandi',
@@ -59,4 +60,7 @@ return [
     'period' => 'Periode',
     'schedule' => 'Jadwal',
     'cancel_request' => 'Batalkan Permintaan',
+    'grade' => 'Nilai',
+    'index' => 'Indeks',
+    'index_grade' => 'Nilai Indeks',
 ];

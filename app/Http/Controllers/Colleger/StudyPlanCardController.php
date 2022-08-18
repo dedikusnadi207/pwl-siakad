@@ -61,11 +61,14 @@ class StudyPlanCardController extends Controller
         $collegerStudyPlanCard->save();
 
         foreach ($studyPlanCardDetailIds as $value) {
-            CollegerStudyPlanCardDetail::updateOrCreate([
-                'colleger_study_plan_card_id' => $collegerStudyPlanCard->id,
-                'study_plan_card_detail_id' => $value,
-                'status' => CollegerStudyPlanCardStatus::WAITING_APPROVAL,
-            ]);
+            CollegerStudyPlanCardDetail::updateOrCreate(
+                ['colleger_study_plan_card_id' => $collegerStudyPlanCard->id, 'study_plan_card_detail_id' => $value],
+                [
+                    'colleger_study_plan_card_id' => $collegerStudyPlanCard->id,
+                    'study_plan_card_detail_id' => $value,
+                    'status' => CollegerStudyPlanCardStatus::WAITING_APPROVAL,
+                ]
+            );
         }
         DB::commit();
 

@@ -154,7 +154,7 @@
                                     <div class="d-flex">
                                         <div class="flex-grow-1">
                                             <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
-                                            <small class="text-muted">{{ Auth::user()->user_type }}</small>
+                                            <small class="text-muted">{{ Auth::user()->publicUserType() }}</small>
                                         </div>
                                     </div>
                                 </a>

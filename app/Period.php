@@ -18,7 +18,7 @@ class Period extends Model
 {
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
@@ -34,5 +34,12 @@ class Period extends Model
     public function collegerStudyPlanCards()
     {
         return $this->hasMany('App\CollegerStudyPlanCard');
+    }
+
+    public function publicName()
+    {
+        $evenOdd = $this->attributes['semester'] % 2 == 0 ? __('common.even') : __('common.odd');
+
+        return $this->attributes['start_year'].'/'.$this->attributes['end_year'].' '.$evenOdd;
     }
 }

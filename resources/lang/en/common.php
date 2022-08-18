@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'admin' => 'Admin',
     'name' => 'Name',
     'password' => 'Password',
     'confirm_password' => 'Confirm Password',
@@ -59,4 +60,7 @@ return [
     'period' => 'Period',
     'schedule' => 'Schedule',
     'cancel_request' => 'Cancel Request',
+    'grade' => 'Grade',
+    'index' => 'Index',
+    'index_grade' => 'Index Grade',
 ];

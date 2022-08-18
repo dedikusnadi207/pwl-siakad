@@ -87,6 +87,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('study-plan-card/{academicSupervisorId}/data', 'Lecturer\StudyPlanCardController@data');
         Route::get('study-plan-card/{collegerStudyPlanCardId}/detail', 'Lecturer\StudyPlanCardController@collegerStudyPlanCardDetail');
         Route::post('study-plan-card/{collegerStudyPlanCardId}/approval', 'Lecturer\StudyPlanCardController@approval');
+
+        Route::get('grade', 'Lecturer\GradeController@index');
+        Route::get('grade/{periodId}/{detailId}/data', 'Lecturer\GradeController@data');
+        Route::post('grade/{periodId}/{detailId}', 'Lecturer\GradeController@save');
     });
 
 });

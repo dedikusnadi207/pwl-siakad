@@ -87,6 +87,10 @@
                         'title' => __('common.study_plan_card'),
                         'url' => url('lct/study-plan-card'),
                         'icon' => 'bx-book'
+                    ], [
+                        'title' => __('common.grade'),
+                        'url' => url('lct/grade'),
+                        'icon' => 'bx-star'
                     ]
                 ],
             ]

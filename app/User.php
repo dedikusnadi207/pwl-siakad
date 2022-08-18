@@ -85,4 +85,9 @@ class User extends Authenticatable
 
         return $result;
     }
+
+    public function publicUserType()
+    {
+        return __('common.'.$this->attributes['user_type']);
+    }
 }

@@ -50,4 +50,9 @@ class StudyPlanCardDetail extends Model
     {
         return __('day.'.$this->attributes['day']).', '.substr($this->attributes['start_time_schedule'], 0, 5).' - '.substr($this->attributes['end_time_schedule'], 0, 5);
     }
+
+    public function publicClass()
+    {
+        return $this->classCourse->class->name.$this->studyPlanCard->class_group;
+    }
 }
