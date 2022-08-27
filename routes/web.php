@@ -80,6 +80,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('study-plan-card', 'Colleger\StudyPlanCardController@index');
         Route::post('study-plan-card', 'Colleger\StudyPlanCardController@save');
         Route::delete('study-plan-card/{parentId}/{id}', 'Colleger\StudyPlanCardController@deleteDetail');
+
+        Route::get('grade', 'Colleger\GradeController@index');
+        Route::get('grade/{collegerStudyPlanCardId}/detail', 'Colleger\GradeController@detail');
     });
 
     Route::middleware(['user.type:lecturer'])->prefix('lct')->group(function () {

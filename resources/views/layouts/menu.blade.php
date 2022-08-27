@@ -74,6 +74,10 @@
                         'title' => __('common.study_plan_card'),
                         'url' => url('clg/study-plan-card'),
                         'icon' => 'bx-book'
+                    ], [
+                        'title' => __('common.grade'),
+                        'url' => url('clg/grade'),
+                        'icon' => 'bx-star'
                     ]
                 ],
             ]

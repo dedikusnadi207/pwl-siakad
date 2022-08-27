@@ -63,4 +63,5 @@ return [
     'grade' => 'Nilai',
     'index' => 'Indeks',
     'index_grade' => 'Nilai Indeks',
+    'close' => 'Tutup',
 ];

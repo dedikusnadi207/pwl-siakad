@@ -63,4 +63,5 @@ return [
     'grade' => 'Grade',
     'index' => 'Index',
     'index_grade' => 'Index Grade',
+    'close' => 'Close',
 ];
